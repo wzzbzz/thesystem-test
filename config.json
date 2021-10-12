@@ -1,0 +1,8 @@
+{
+    "root":"\/var\/www\/thesystem-test\/systemroot",
+    "pages":{
+        "signup":"signup",
+        "login":"login",
+        "create-sysop":"createSysop"
+    }
+}

@@ -1,0 +1,29 @@
+<?php
+
+$url = "http://isizulu.net/";
+$fields = array('qsel'=>'','query'=>'sanibonani+umhlaba');
+
+function curl_get_contents($url,$post=FALSE,$fields=NULL){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        if($post==TRUE){
+            //not my code.  davidwalsh.nam/curl-post
+            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+            rtrim($fields_string, '&');
+            
+
+            curl_setopt($ch,CURLOPT_POST, count($fields));
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+            
+        }
+        $contents = curl_exec($ch);
+        curl_close($ch);
+        return $contents;
+}
+
+
+$data = curl_get_contents($url,true,$fields);
+
+echo $data;
+die;

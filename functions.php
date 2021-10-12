@@ -6,8 +6,8 @@ spl_autoload_register(
         if(strpos($classname,"thesystem") ===false || strpos($classname, "thesystem" ) > 0  ){
 			return;
 		}
-
-		$include = WEB_ROOT . str_replace( "\\","/",$classname).".php";
+        
+		$include = $_SERVER['DOCUMENT_ROOT'] . str_replace( "\\","/",$classname).".php";
         
 		if(file_exists($include))
 			include_once($include);
@@ -57,6 +57,7 @@ if(!function_exists('diebug')) {
     }
 }
 
+// gotten from internet;  recursive remove directory fun ction
 
 function removeDirectory($path) {
     $files = glob($path . '/*');
@@ -68,13 +69,10 @@ function removeDirectory($path) {
 }
 
 
-
+// wordpressy slug creation
 function sanitize_title( $title ) {
    $title = preg_replace( '/[^a-z0-9]+/', '-', strtolower( $title ) );
    return $title;
 }
 
 
-define('WEB_ROOT',getcwd()."/");
-$path = trim(file_get_contents(WEB_ROOT."/config.ini"));
-$sys = new \thesystem\Users\UserSystem($path);
