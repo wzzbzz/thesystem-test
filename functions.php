@@ -75,4 +75,13 @@ function sanitize_title( $title ) {
    return $title;
 }
 
+// normalize $_SERVER var across differen't servers
+function docroot(){
+    return tslash($_SERVER['DOCUMENT_ROOT']);
+}
+
+// add that ol trailing slash
+function tslash( $str ){
+    return rtrim($str,"/")."/";
+}
 
