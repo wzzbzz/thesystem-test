@@ -7,7 +7,7 @@ spl_autoload_register(
 			return;
 		}
         
-		$include = $_SERVER['DOCUMENT_ROOT'] . str_replace( "\\","/",$classname).".php";
+		$include = docroot() . str_replace( "\\","/",$classname).".php";
         
 		if(file_exists($include))
 			include_once($include);
